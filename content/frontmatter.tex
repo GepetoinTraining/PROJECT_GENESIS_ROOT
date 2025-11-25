@@ -1,43 +1,52 @@
 % =======================================================================
-% THE FRONT MATTER
+% THE FRONT MATTER (Debug Version)
 % =======================================================================
-% Input this inside the \begin{Form} environment in main.tex, 
-% BEFORE the main content.
 
 % -----------------------------------------------------------------------
-% LAYER A: DARK MODE (The Cinematic Cover)
+% LAYER A: DARK MODE
 % -----------------------------------------------------------------------
 \begin{ocg}{DarkLayer}{darklayer}{1}
     \pagecolor{ui_dark_bg} 
     
-    % --- THE COVER PAGE ---
     \begin{titlepage}
         \centering
         \vspace*{1cm}
         
-        % 1. The Institution (Subtle Authority)
-        {\fontspec{FiraSans-Regular.ttf}\small\color{mit_steel} \MakeUppercase{\InstituteName}}
+        % 1. Institution
+        {\fontspec{FiraSans-Regular.ttf}\small\color{mit_steel} 
+         \MakeUppercase{\InstituteName}}
         \vspace{0.2cm}
         \\
-        {\fontspec{FiraSans-Bold.ttf}\small\color{mit_steel} APPLIED GENERATIVE AI FOR DIGITAL TRANSFORMATION}
+        {\fontspec{FiraSans-Bold.ttf}\small\color{mit_steel} 
+         APPLIED GENERATIVE AI FOR DIGITAL TRANSFORMATION}
         
         \vspace{2cm}
 
-        % 2. The Artifact (Visual Anchor)
-        % We use the Manifest Router to pull the Enigma Rotors
-        \GenesisImage{rotors}{}{0.6}
+        % 2. The Image (Debug this)
+        \fbox{%
+            \begin{minipage}{0.6\textwidth}
+                \centering
+                % Test if image exists
+                \IfFileExists{images/img_enigma_rotors_001.jpeg}{%
+                    \includegraphics[width=\textwidth]{images/img_enigma_rotors_001.jpeg}
+                }{%
+                    \textcolor{mit_cardinal}{IMAGE NOT FOUND: img\_enigma\_rotors\_001.jpeg}
+                }
+            \end{minipage}
+        }
         
         \vspace{1.5cm}
 
-        % 3. The Title (The Synaptic Logic)
+        % 3. Title
         \GenesisTitle{PROJECT GENESIS}
         \vspace{0.5cm}
         \\
-        {\fontspec{FiraCode-Regular.ttf}\large\color{term_green} PROTOCOL: SPEED $\times$ RESOLUTION}
+        {\fontspec{FiraCode-Regular.ttf}\large\color{term_green} 
+         PROTOCOL: SPEED $\times$ RESOLUTION}
 
         \vspace{3cm}
 
-        % 4. The Metadata (The Footer)
+        % 4. Metadata Box
         \begin{tcolorbox}[
             colback=ui_dark_panel, 
             colframe=mit_charcoal, 
@@ -53,28 +62,29 @@
 
     \end{titlepage}
 
-    % --- THE EXECUTIVE SUMMARY (The Directive) ---
+    % Executive Summary
     \newpage
     \TapeHeader{OPERATIONAL DIRECTIVE}
-    
     \vspace{1cm}
 
     \begin{axiombox}{EXECUTIVE SUMMARY}
-        This document serves as the architectural blueprint for a \textbf{Time-Agnostic Cognitive Operating System}. 
-        By decoupling "Real Time" (Human Execution) from "Trained Time" (AI Simulation), we achieve a proprietary advantage defined as:
+        This document serves as the architectural blueprint for a 
+        \textbf{Time-Agnostic Cognitive Operating System}. 
+        By decoupling "Real Time" (Human Execution) from "Trained Time" 
+        (AI Simulation), we achieve a proprietary advantage defined as:
         \[ \SxR \]
-        The following logic gates and vector patterns demonstrate the "Costco vs. Turkey" filter applied to real-world capital allocation.
+        The following logic gates and vector patterns demonstrate the 
+        "Costco vs. Turkey" filter applied to real-world capital allocation.
     \end{axiombox}
 
-    % --- THE MISSION INDEX (Table of Contents) ---
+    % Table of Contents
     \vspace{2cm}
     \TapeHeader{MISSION INDEX}
     \vspace{0.5cm}
     
-    % Customizing the TOC to look like a terminal list
     {
         \color{ui_dark_text_primary}
-        \renewcommand{\contentsname}{} % Hide default title
+        \renewcommand{\contentsname}{}
         \tableofcontents
     }
 
@@ -82,35 +92,46 @@
 \end{ocg}
 
 % -----------------------------------------------------------------------
-% LAYER B: LIGHT MODE (The Dossier Cover)
+% LAYER B: LIGHT MODE
 % -----------------------------------------------------------------------
 \begin{ocg}{LightLayer}{lightlayer}{0}
-    % White Background Overlay
     \begin{tikzpicture}[remember picture, overlay]
-        \fill[ui_light_bg] (current page.south west) rectangle (current page.north east);
+        \fill[ui_light_bg] (current page.south west) rectangle 
+                           (current page.north east);
     \end{tikzpicture}
 
-    % --- THE COVER PAGE ---
     \begin{titlepage}
         \centering
         \vspace*{1cm}
         
-        {\fontspec{FiraSans-Regular.ttf}\small\color{mit_charcoal} \MakeUppercase{MIT Professional Education}}
+        {\fontspec{FiraSans-Regular.ttf}\small\color{mit_charcoal} 
+         \MakeUppercase{MIT Professional Education}}
         \vspace{0.2cm}
         \\
-        {\fontspec{FiraSans-Bold.ttf}\small\color{mit_cardinal} APPLIED GENERATIVE AI FOR DIGITAL TRANSFORMATION}
+        {\fontspec{FiraSans-Bold.ttf}\small\color{mit_cardinal} 
+         APPLIED GENERATIVE AI FOR DIGITAL TRANSFORMATION}
         
         \vspace{2cm}
 
-        % Image (Same Asset, styled by Manifest automatically)
-        \GenesisImage{rotors}{}{0.6}
+        % Image in Light Mode
+        \fbox{%
+            \begin{minipage}{0.6\textwidth}
+                \centering
+                \IfFileExists{images/img_enigma_rotors_001.jpeg}{%
+                    \includegraphics[width=\textwidth]{images/img_enigma_rotors_001.jpeg}
+                }{%
+                    \textcolor{mit_cardinal}{IMAGE NOT FOUND}
+                }
+            \end{minipage}
+        }
         
         \vspace{1.5cm}
 
         \GenesisTitle{PROJECT GENESIS}
         \vspace{0.5cm}
         \\
-        {\fontspec{FiraCode-Regular.ttf}\large\color{mit_cardinal} PROTOCOL: SPEED $\times$ RESOLUTION}
+        {\fontspec{FiraCode-Regular.ttf}\large\color{mit_cardinal} 
+         PROTOCOL: SPEED $\times$ RESOLUTION}
 
         \vspace{3cm}
 
@@ -130,21 +151,21 @@
 
     \end{titlepage}
 
-    % --- EXECUTIVE SUMMARY ---
     \newpage
     \TapeHeader{OPERATIONAL DIRECTIVE}
-    
     \vspace{1cm}
 
     \begin{axiombox}[colback=white, colframe=mit_cardinal]{EXECUTIVE SUMMARY}
         \color{mit_charcoal}
-        This document serves as the architectural blueprint for a \textbf{Time-Agnostic Cognitive Operating System}. 
-        By decoupling "Real Time" (Human Execution) from "Trained Time" (AI Simulation), we achieve a proprietary advantage defined as:
+        This document serves as the architectural blueprint for a 
+        \textbf{Time-Agnostic Cognitive Operating System}. 
+        By decoupling "Real Time" (Human Execution) from "Trained Time" 
+        (AI Simulation), we achieve a proprietary advantage defined as:
         \[ \color{black} \SxR \]
-        The following logic gates and vector patterns demonstrate the "Costco vs. Turkey" filter applied to real-world capital allocation.
+        The following logic gates and vector patterns demonstrate the 
+        "Costco vs. Turkey" filter applied to real-world capital allocation.
     \end{axiombox}
 
-    % --- MISSION INDEX ---
     \vspace{2cm}
     \TapeHeader{MISSION INDEX}
     \vspace{0.5cm}

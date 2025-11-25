@@ -3,16 +3,12 @@
 
 \RequirePackage{graphicx}
 \RequirePackage{tikz}
-\RequirePackage{styles/colors} % For the shadow colors
-\RequirePackage{styles/typography} % For the caption font
+\RequirePackage{styles/colors}
+\RequirePackage{styles/typography}
 
 % =======================================================================
 % 1. THE ROUTER (The Mapping Logic)
 % =======================================================================
-% We use a simple internal command to store filenames.
-% Usage: \DefineAsset{KEY}{FILENAME}
-% -----------------------------------------------------------------------
-
 \newcommand{\assets}[1]{%
     \ifcsname asset@#1\endcsname%
         \csname asset@#1\endcsname%
@@ -25,72 +21,48 @@
     \expandafter\def\csname asset@#1\endcsname{images/#2}%
 }
 
-% -----------------------------------------------------------------------
-% 2. THE ASSET REGISTRY (Your Database)
-% UPDATE THIS LIST AS YOU GENERATE IMAGES
-% -----------------------------------------------------------------------
+% =======================================================================
+% 2. THE ASSET REGISTRY (Matched to actual files)
+% =======================================================================
 
-% Era 1: The Mechanical
-\DefineAsset{enigma_bg}{bg_enigma_texture.jpeg}
+% Backgrounds
+\DefineAsset{bakelite_bg}{bg_bakelite_dark.png.jpeg}
+\DefineAsset{punchcard_bg}{bg_punchcard_light.png.jpeg}
+\DefineAsset{tape_bg}{bg_tape_header.png.jpeg}
+
+% Main Assets
 \DefineAsset{rotors}{img_enigma_rotors_001.jpeg}
 
-% Era 2: The Tape
-\DefineAsset{tape_reel}{img_ibm_tape_reel_04.jpeg}
-
-% Era 3: The Neural
-\DefineAsset{synapse}{img_neural_gate_09.png}
-\DefineAsset{senna_tower}{render_senna_tower_v3.jpg}
+% Fallback for missing assets
+\DefineAsset{placeholder}{example-image-a}
 
 % =======================================================================
-% 3. THE "TIXI" SHADOW FRAME
-% A hard, geometric shadow using TikZ.
-% Usage: \GenesisImage{KEY}{CAPTION}{WIDTH_FRACTION}
-% Example: \GenesisImage{rotors}{Fig 1.1: The Mechanism}{0.8}
+% 3. THE IMAGE FRAME WITH SHADOW
 % =======================================================================
-
 \newcommand{\GenesisImage}[3]{%
     \begin{center}
     \begin{tikzpicture}
         % Configuration
         \def\imgwidth{#3\textwidth}
         
-        % 1. The Shadow (Hard Offset)
-        % Drawn FIRST so it sits behind.
-        % Shifted right (0.2) and down (-0.2).
+        % The Image Node
         \node[
             inner sep=0pt,
             anchor=south west,
-            xshift=2mm,
-            yshift=-2mm
-        ] at (0,0) {
-            \color{mit_charcoal!40!black} % Deep shadow color
-            \rule{\imgwidth}{\imgwidth * \real{0.6}} % Abstract placeholder size...
-            % WAIT: To match exact image size in TikZ is tricky without reading it first.
-            % "Costco" Fix: We simply frame the image node itself.
-        };
-
-        % 2. The Image Node (The Foreground)
-        \node[
-            inner sep=0pt,
-            anchor=south west,
-            draw=mit_charcoal, % The Border
-            line width=1pt,
-            fill=white % Ensure transparency doesn't show the shadow through
+            draw=mit_charcoal,
+            line width=1pt
         ] (theimage) at (0,0) {
             \includegraphics[width=\imgwidth]{\assets{#1}}
         };
         
-        % 3. The Shadow (Redrawn Correctly using the node coordinates)
+        % The Shadow (Behind)
         \begin{scope}[on background layer]
-            \fill[mit_charcoal!90!black] 
-                ([xshift=3mm, yshift=-3mm]theimage.north west) -- 
-                ([xshift=3mm, yshift=-3mm]theimage.north east) -- 
-                ([xshift=3mm, yshift=-3mm]theimage.south east) -- 
-                ([xshift=3mm, yshift=-3mm]theimage.south west) -- 
-                cycle;
+            \fill[mit_charcoal!40!black] 
+                ([xshift=3mm, yshift=-3mm]theimage.north west) rectangle
+                ([xshift=3mm, yshift=-3mm]theimage.south east);
         \end{scope}
 
-        % 4. The Caption (Industrial Label)
+        % The Caption
         \node[
             anchor=north west,
             font=\sffamily\small\color{mit_steel},

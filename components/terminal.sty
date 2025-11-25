@@ -7,16 +7,15 @@
 \RequirePackage{styles/typography}
 
 % =======================================================================
-% 1. THE SYNTAX HIGHLIGHTER (The Parser)
-% Defining how code looks (Green strings, Cyan keys)
+% 1. THE SYNTAX HIGHLIGHTER
 % =======================================================================
 \lstdefinestyle{genesis_syntax}{
-    language=Java, % Good enough for JS/JSON syntax
-    basicstyle=\ttfamily\small\color{term_green}, % Fira Code + Green
-    keywordstyle=\color{term_cyan}\bfseries,
-    stringstyle=\color{term_amber},
-    commentstyle=\color{mit_steel}\itshape,
-    numberstyle=\tiny\color{term_dim},
+    language=Java,
+    basicstyle=\ttfamily\small\color{term_green},
+    keywordstyle=\color{code_keyword}\bfseries,
+    stringstyle=\color{code_string},
+    commentstyle=\color{code_comment}\itshape,
+    numberstyle=\tiny\color{code_comment},
     numbers=left,
     stepnumber=1,
     breaklines=true,
@@ -26,37 +25,23 @@
 }
 
 % =======================================================================
-% 2. THE TERMINAL WINDOW (The Container)
-% Looks like a CRT monitor or a VS Code window.
+% 2. THE TERMINAL WINDOW
 % =======================================================================
 \newtcblisting{genesisblock}[2][]{
     enhanced,
-    colback=term_bg,      % The Void
-    colframe=mit_charcoal,% The Bezel
+    colback=term_bg,
+    colframe=mit_charcoal,
     colupper=term_green,
-    
-    % Geometry
     arc=1mm,
     boxrule=0.5pt,
-    left=6mm, % Space for line numbers
-    
-    % The Header Bar (Like a window title)
+    left=6mm,
     title={\ttfamily \scriptsize \faTerminal \hspace{2mm} #2},
-    coltitle=mit_steel,
+    coltitle=header_text,
     attach boxed title to top left={xshift=0mm, yshift=0mm},
-    boxed title style={
-        frame hidden, 
-        colback=mit_charcoal, 
-        sharp corners=south
-    },
-    
-    % Connect logic
+    boxed title style={frame hidden, colback=header_bg, sharp corners=south},
     listing only,
     listing options={style=genesis_syntax},
-    
-    % Shadow for "Floating Window" effect
-    drop shadow={opacity=0.5, shadow xshift=2mm, shadow yshift=-2mm},
-    
+    drop shadow,
     #1
 }
 

@@ -1,76 +1,102 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{styles/colors}[2025/11/25 Genesis Protocol Color Palette v2]
+\ProvidesPackage{styles/colors}[2025/11/25 Genesis Protocol Color Palette v3 - Accessible]
 
 \RequirePackage{xcolor}
 
 % =======================================================================
 % 1. THE PRIMITIVES (THE DNA)
-% The absolute truth values for our brands.
+% Core brand colors - these stay true
 % =======================================================================
 
-% MIT "Mens et Manus"
-\definecolor{mit_cardinal}{RGB}{163, 31, 52} 
-\definecolor{mit_steel}{RGB}{138, 139, 140}
-\definecolor{mit_charcoal}{RGB}{35, 31, 32}
+% MIT Official
+\definecolor{mit_cardinal}{RGB}{163, 31, 52}       % The red - keep this
+\definecolor{mit_steel}{RGB}{138, 139, 140}        % Mid-grey - good neutral
+\definecolor{mit_charcoal}{RGB}{35, 31, 32}        % Almost black - good for text
 
-% Enigma "The Machine"
-\definecolor{enigma_bakelite}{RGB}{43, 30, 28} 
-\definecolor{enigma_brass}{RGB}{184, 155, 89} 
-\definecolor{ibm_mainframe}{RGB}{70, 95, 115} 
-\definecolor{punch_card}{RGB}{245, 241, 222}
+% Industrial Era (Warmer, more readable)
+\definecolor{enigma_bakelite}{RGB}{43, 30, 28}     % Deep brown-black
+\definecolor{enigma_brass}{RGB}{184, 155, 89}      % Warm gold
+\definecolor{ibm_mainframe}{RGB}{70, 95, 115}      % Cool blue-grey
+\definecolor{punch_card}{RGB}{245, 241, 222}       % Warm off-white
 
-% System B "The Digital"
-\definecolor{term_bg}{RGB}{30, 30, 30} 
-\definecolor{term_green}{RGB}{57, 255, 20} 
-\definecolor{term_amber}{RGB}{255, 176, 0} 
+% Terminal/Digital (More balanced)
+\definecolor{term_bg}{RGB}{24, 24, 24}             % Slightly lighter for contrast
+\definecolor{term_green}{RGB}{87, 255, 102}        % Brighter, more visible green
+\definecolor{term_amber}{RGB}{255, 191, 64}        % Softer amber
+\definecolor{term_cyan}{RGB}{102, 217, 239}        % Proper cyan for keywords
 
 % =======================================================================
 % 2. THE DERIVATIVES (THE VARIATIONS)
-% Calculated variations to ensure tonal consistency.
-% Usage: \colorlet{Name}{Base!Percent!MixTarget}
+% Better balanced mixes for readability
 % =======================================================================
 
-% -- Shadows (Mixed with Black/Charcoal) --
-\colorlet{cardinal_deep}{mit_cardinal!70!black}      % Dark Red for borders
-\colorlet{steel_shadow}{mit_steel!60!black}          % Dark Steel for text
-\colorlet{bakelite_void}{enigma_bakelite!50!black}   % Almost black, warmer
+% Shadows (Deeper, more defined)
+\colorlet{cardinal_deep}{mit_cardinal!85!black}
+\colorlet{steel_shadow}{mit_steel!70!black}
+\colorlet{bakelite_void}{enigma_bakelite!80!black}
 
-% -- Tints (Mixed with White/Paper) --
-\colorlet{cardinal_wash}{mit_cardinal!10!white}      % Very faint red background
-\colorlet{brass_polished}{enigma_brass!40!white}     % Shiny brass
-\colorlet{punch_card_fresh}{punch_card!50!white}     % Cleaner paper look
+% Highlights (More visible)
+\colorlet{cardinal_wash}{mit_cardinal!15!white}
+\colorlet{brass_polished}{enigma_brass!60!white}
+\colorlet{punch_card_fresh}{punch_card!80!white}
 
-% -- The "Digital Glare" (Mixed with Terminal Green) --
-\colorlet{term_glare}{term_green!20!term_bg}         % Subtle CRT glow on black
-\colorlet{term_dim}{term_green!70!term_bg}           % Inactive text
+% Terminal effects (Better visibility)
+\colorlet{term_glare}{term_green!30!term_bg}
+\colorlet{term_dim}{term_green!60!term_bg}
 
 % =======================================================================
 % 3. THE SEMANTIC SPREAD (THE UI LAYER)
-% Mapping the derivatives to the Interface Logic.
+% High contrast, accessible combinations
 % =======================================================================
 
-% --- DARK MODE (The "Bunker" Vibe) ---
-% Background: Not pure black. Deep Bakelite mixed with Void.
-\colorlet{ui_dark_bg}{bakelite_void} 
-% Panels: The Terminal Background
-\colorlet{ui_dark_panel}{term_bg}
-% Text: Polished Brass (readable on dark) or Terminal Green
-\colorlet{ui_dark_text_primary}{punch_card!90!term_bg}
-\colorlet{ui_dark_text_accent}{term_green}
-% Bubbles:
-\colorlet{ui_dark_bubble_sys}{mit_charcoal!90!black} % System: Recedes into shadow
-\colorlet{ui_dark_bubble_user}{cardinal_deep}        % User: Stands out, bold
+% --- DARK MODE (The Default) ---
+% Background: Deep but not pure black (better for screens)
+\colorlet{ui_dark_bg}{black!92!enigma_bakelite}
 
-% --- LIGHT MODE (The "Dossier" Vibe) ---
-% Background: Fresh Punch Card (Warm White)
-\colorlet{ui_light_bg}{punch_card_fresh}
-% Panels: White Paper
-\colorlet{ui_light_panel}{white}
-% Text: Deep Charcoal (High Contrast)
+% Panels: Distinct from background
+\colorlet{ui_dark_panel}{black!85!mit_steel}
+
+% Text: High contrast, warm undertone
+\colorlet{ui_dark_text_primary}{punch_card!95!enigma_brass}
+\colorlet{ui_dark_text_accent}{term_green}
+
+% Bubbles: Clear visual distinction
+\colorlet{ui_dark_bubble_sys}{mit_charcoal!60!ibm_mainframe}    % Cool blue-grey
+\colorlet{ui_dark_bubble_user}{cardinal_deep}                    % Warm red
+
+% --- LIGHT MODE (The Alternative) ---
+% Background: Warm white, easier on eyes
+\colorlet{ui_light_bg}{punch_card}
+
+% Panels: Subtle depth
+\colorlet{ui_light_panel}{white!95!mit_steel}
+
+% Text: Deep charcoal with warmth
 \colorlet{ui_light_text_primary}{mit_charcoal}
 \colorlet{ui_light_text_accent}{mit_cardinal}
-% Bubbles:
-\colorlet{ui_light_bubble_sys}{mit_steel!20!white}   % System: Metallic, light
-\colorlet{ui_light_bubble_user}{ibm_mainframe}       % User: Corporate Blue/Grey
+
+% Bubbles: Soft but distinct
+\colorlet{ui_light_bubble_sys}{ibm_mainframe!25!white}          % Light blue-grey
+\colorlet{ui_light_bubble_user}{mit_cardinal!80!white}          % Soft cardinal
+
+% =======================================================================
+% 4. SPECIAL PURPOSE COLORS
+% For specific UI elements that need extra attention
+% =======================================================================
+
+% Header/Title bar
+\colorlet{header_bg}{mit_charcoal}
+\colorlet{header_text}{punch_card!90!enigma_brass}
+
+% Code syntax (optimized for terminal block)
+\colorlet{code_keyword}{term_cyan}
+\colorlet{code_string}{term_amber}
+\colorlet{code_comment}{mit_steel!80!white}
+\colorlet{code_number}{term_green!80!term_amber}
+
+% Interactive elements
+\colorlet{button_bg}{mit_cardinal}
+\colorlet{button_text}{white}
+\colorlet{button_hover}{cardinal_deep}
 
 \endinput

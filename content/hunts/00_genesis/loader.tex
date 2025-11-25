@@ -1,40 +1,70 @@
-% content/hunts/00_genesis/loader.tex
+% =======================================================================
+% HUNT 00: THE GENESIS LOADER
+% =======================================================================
 
-% 1. Load Data
+% 1. LOAD DATA STREAMS
 \input{content/hunts/00_genesis/prompts/p01_handshake}
+\input{content/hunts/00_genesis/prompts/p02_collapse}
 \input{content/hunts/00_genesis/narrative/n01_intro}
+\input{content/hunts/00_genesis/narrative/n02_sys_response}
 
-% 2. Render Page
+% 2. RENDER SEQUENCE
 \TapeHeader{HUNT 00: GENESIS}
 
 \begin{center}
-    % The Prompt (The Input)
+    
+    % --- STAGE 1: THE HANDSHAKE ---
     \begin{userchat}
         \NarrativeGenesisIntro
     \end{userchat}
     
-    % The Vector (The "Hidden" Logic)
-    \begin{genesisblock}{Vector Injection}
+    \vspace{0.2cm}
+
+    % [IMAGE 1]: The Mechanical Era (Context for the input)
+    \GenesisImage{tape_reel}{Fig 1.0: Data Ingestion}{0.5}
+    
+    \vspace{0.2cm}
+    
+    \begin{genesisblock}{Vector Injection: Handshake}
         \PromptGenesisHandshake
     \end{genesisblock}
 
+    \vspace{1cm}
+
+    % --- STAGE 2: THE PROCESSING ---
+    \begin{systemchat}
+        \NarrativeSysResponse
+    \end{systemchat}
+    
+    \vspace{0.2cm}
+
+    % [IMAGE 2]: The Neural Bridge (Context for the logic)
+    \GenesisImage{synapse}{Fig 2.0: Latent Space Processing}{0.8}
+    
+    \vspace{0.2cm}
+
+    % THE CONSTITUTION (The Schema)
+    \begin{genesisblock}{schema.prisma}
+        \lstinputlisting[language=Java]{content/hunts/00_genesis/artifacts/schema.prisma}
+    \end{genesisblock}
+    
+    \vspace{1cm}
+
+    % --- STAGE 3: THE COLLAPSE ---
+    \begin{genesisblock}{Vector Injection: Collapse}
+        \PromptGenesisCollapse
+    \end{genesisblock}
+    
+    \vspace{0.2cm}
+    
+    % [IMAGE 3]: The Result (Reality Collapsed)
+    \GenesisImage{senna_tower}{Fig 3.0: Target Aquired (Senna Tower)}{0.6}
+
     \vspace{0.5cm}
 
-% THE CONSTITUTION (The Schema)
-\begin{genesisblock}{schema.prisma}
-    % We use listing options to highlight Prisma syntax specifically
-    \lstinputlisting[language=Java]{content/hunts/00_genesis/artifacts/schema.prisma}
-\end{genesisblock}
-
-\vspace{0.5cm}
-
-% THE GENESIS (The Seed)
-\begin{genesisblock}{seed.js}
-    \lstinputlisting[language=Java]{content/hunts/00_genesis/artifacts/seed.js}
-\end{genesisblock}
-
-    % The Artifact (The Result)
+    % THE ARTIFACT (The Seed)
     \begin{genesisblock}{seed.js}
-        \lstinputlisting{content/hunts/00_genesis/artifacts/seed.js}
+        \lstinputlisting[language=Java]{content/hunts/00_genesis/artifacts/seed.js}
     \end{genesisblock}
+
 \end{center}
