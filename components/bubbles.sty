@@ -1,0 +1,74 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{components/bubbles}[2025/11/25 Genesis Chat Components]
+
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+\RequirePackage{fontawesome5}
+\RequirePackage{styles/colors} % Link to our DNA
+\RequirePackage{styles/typography} % Link to our Voice
+
+% =======================================================================
+% 1. THE BASE GEOMETRY
+% Shared physics for all bubbles (rounding, padding, shadows)
+% =======================================================================
+\tcbset{
+    bubblebase/.style={
+        enhanced,
+        breakable,
+        frame hidden,
+        arc=3mm,
+        boxrule=0mm,
+        left=4mm, right=4mm, top=3mm, bottom=3mm,
+        fontupper=\sffamily, % Use Fira Sans
+        % The "Lift" Shadow - gives it depth off the page
+        drop shadow={opacity=0.25, shadow xshift=1mm, shadow yshift=-1mm}
+    }
+}
+
+% =======================================================================
+% 2. THE SYSTEM BUBBLE (The Engine)
+% Aligned LEFT. Industrial colors.
+% =======================================================================
+\newtcolorbox{systemchat}[1][]{
+    bubblebase,
+    width=12cm,
+    halign=flush left,
+    enlarge right by=4cm, % Push to the left side
+    
+    % Semantic Color Mapping (Default to Dark Mode, override in Light)
+    colback=ui_dark_bubble_sys,
+    coltext=ui_dark_text_primary,
+    
+    % The Header
+    title={\scriptsize \faRobot \hspace{1mm} \textbf{SYSTEM B}},
+    coltitle=mit_steel!50!white,
+    attach boxed title to top left={yshift=-2mm, xshift=2mm},
+    boxed title style={frame hidden, colback=ui_dark_bubble_sys},
+    
+    #1 % Allow arguments to override (e.g., changing colors for Light Mode)
+}
+
+% =======================================================================
+% 3. THE USER BUBBLE (The Hunter)
+% Aligned RIGHT. Organic/Action colors.
+% =======================================================================
+\newtcolorbox{userchat}[1][]{
+    bubblebase,
+    width=12cm,
+    halign=flush left, % Text inside is left-aligned
+    enlarge left by=4cm, % Push to the right side
+    
+    % Semantic Color Mapping
+    colback=ui_dark_bubble_user, 
+    coltext=white,
+    
+    % The Header
+    title={\scriptsize \faUserAstronaut \hspace{1mm} \textbf{THE CVO}},
+    coltitle=white!90!mit_cardinal,
+    attach boxed title to top right={yshift=-2mm, xshift=-2mm},
+    boxed title style={frame hidden, colback=ui_dark_bubble_user},
+    
+    #1
+}
+
+\endinput

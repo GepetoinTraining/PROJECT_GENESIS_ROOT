@@ -1,0 +1,55 @@
+\documentclass{article}
+
+% 1. GLOBAL CONFIG
+\usepackage[margin=0cm, paperwidth=8.5in, paperheight=11in]{geometry}
+\usepackage{xcolor}
+\usepackage{ocgx2}    % Layers
+\usepackage{hyperref} % Interactions
+\usepackage{tikz}     % Graphics engine
+\usetikzlibrary{backgrounds, fit}
+
+% 2. CONFIGURATION (The Variables) <--- LOAD THIS FIRST
+\usepackage{content/types}
+
+% 3. MODULE IMPORTS
+\usepackage{styles/colors}
+\usepackage{styles/typography}
+\usepackage{styles/layout}       % <--- NEW: Header &
+\usepackage{styles/notation}
+\usepackage[style=numeric, backend=biber, sorting=none]{biblatex}
+
+% 4. GhostSection logic
+\usepackage{components/bubbles}
+\usepackage{components/terminal}
+\usepackage{components/manifest}
+
+% 5. METADATA
+\title{PROJECT GENESIS}
+\author{The CVO}
+\date{\today}
+
+% 5. RENDER SEQUENCE
+\begin{document}
+    \begin{Form} % Initialize Interaction Engine
+        
+% 1. THE FRONT MATTER (Cover, Abstract, TOC)
+        \input{content/frontmatter} 
+        
+        % 2. THE PAYLOAD (The Chat, The Code)
+        \input{content/payload}
+        
+        % 3. THE BACK MATTER (Appendices)
+        \newpage
+        \appendix
+        \input{content/appendices/appendix_a}
+        \input{content/appendices/appendix_b}
+        
+    \end{Form}
+\addbibresource{references.bib}
+\newpage
+\appendix % Resets counters to "A, B, C..."
+
+\input{content/appendices/appendix_a}
+\newpage
+\input{content/appendices/appendix_b}   
+\end{document}

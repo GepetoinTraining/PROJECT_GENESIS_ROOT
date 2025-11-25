@@ -1,0 +1,40 @@
+% content/hunts/00_genesis/loader.tex
+
+% 1. Load Data
+\input{content/hunts/00_genesis/prompts/p01_handshake}
+\input{content/hunts/00_genesis/narrative/n01_intro}
+
+% 2. Render Page
+\TapeHeader{HUNT 00: GENESIS}
+
+\begin{center}
+    % The Prompt (The Input)
+    \begin{userchat}
+        \NarrativeGenesisIntro
+    \end{userchat}
+    
+    % The Vector (The "Hidden" Logic)
+    \begin{genesisblock}{Vector Injection}
+        \PromptGenesisHandshake
+    \end{genesisblock}
+
+    \vspace{0.5cm}
+
+% THE CONSTITUTION (The Schema)
+\begin{genesisblock}{schema.prisma}
+    % We use listing options to highlight Prisma syntax specifically
+    \lstinputlisting[language=Java]{content/hunts/00_genesis/artifacts/schema.prisma}
+\end{genesisblock}
+
+\vspace{0.5cm}
+
+% THE GENESIS (The Seed)
+\begin{genesisblock}{seed.js}
+    \lstinputlisting[language=Java]{content/hunts/00_genesis/artifacts/seed.js}
+\end{genesisblock}
+
+    % The Artifact (The Result)
+    \begin{genesisblock}{seed.js}
+        \lstinputlisting{content/hunts/00_genesis/artifacts/seed.js}
+    \end{genesisblock}
+\end{center}

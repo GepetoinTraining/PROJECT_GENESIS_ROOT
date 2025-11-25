@@ -1,0 +1,79 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{styles/typography}[2025/11/25 Genesis Protocol Typography]
+
+% REQUIREMENT: Compiler must be set to XeLaTeX or LuaLaTeX
+\RequirePackage{fontspec}
+
+% =======================================================================
+% 1. THE FOLDER MAP (The Router)
+% =======================================================================
+% This tells the compiler: "Don't look in the system. Look in /fonts."
+\defaultfontfeatures{
+    Path = fonts/,
+    Extension = .ttf,
+    Ligatures = TeX
+}
+
+% =======================================================================
+% 2. THE STANDARD ISSUE (Fira System)
+% =======================================================================
+
+% The "Human" Voice (Body Text)
+% Clean, legible, modern. The "Sinek" element.
+\setmainfont{FiraSans}[
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-BoldItalic
+]
+
+% The "Machine" Voice (Code & JSON)
+% Monospaced, distinct. The "Hormozi" element.
+\setmonofont{FiraCode}[
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    Contextuals = Alternate % Enables coding ligatures (=> becomes arrow)
+]
+
+% =======================================================================
+% 3. THE SYNAPTIC TITLE LAYER (The "Gate" Logic)
+% =======================================================================
+
+% [EXPERIMENTAL] The "Genesis Gates" Font.
+% Concept: Letters represented by Open/Closed logic gates.
+% STATUS: PENDING MANUFACTURE.
+% -----------------------------------------------------------------------
+% \newfontfamily\gatefont{GenesisGates}[
+%     Path = fonts/,
+%     Extension = .ttf,
+%     UprightFont = *-Regular
+% ]
+% -----------------------------------------------------------------------
+
+% =======================================================================
+% 4. THE FALLBACK PROTOCOL
+% =======================================================================
+
+% The Command: \GenesisTitle{TEXT}
+% This acts as a proxy. If we manufacture the font later, we change 
+% the logic here, and the whole document updates.
+
+\newcommand{\GenesisTitle}[1]{%
+    % -------------------------------------------------------------------
+    % OPTION A: THE EXPERIMENTAL (Commented out until file exists)
+    % -------------------------------------------------------------------
+    % {\gatefont \fontsize{30}{36}\selectfont \MakeUppercase{#1}}
+    %
+    % -------------------------------------------------------------------
+    % OPTION B: THE FALLBACK (The Industrial Heavy)
+    % Uses Fira Sans ExtraBold to simulate the weight of machinery.
+    % -------------------------------------------------------------------
+    {\fontspec[Path=fonts/]{FiraSans-ExtraBold.ttf}
+     \color{mit_charcoal} % Default to heavy industry color
+     \fontsize{28}{32}\selectfont 
+     \MakeUppercase{#1}
+     \addfontfeatures{LetterSpace=10.0} % Tracking for "Cinematic" feel
+    }%
+}
+
+\endinput

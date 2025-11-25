@@ -1,0 +1,61 @@
+// DATASOURCE: THE ETHER
+datasource db {
+  provider = "postgresql"
+  url      = env("QUANTUM_CAPITAL_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  // "Speed x Resolution" Engine enabled
+  previewFeatures = ["latentSpaceIntegration", "timeAgnosticIndexing"]
+}
+
+// CORE ENTITY: THE OPERATOR
+model Hunter {
+  id              String   @id @default(uuid())
+  alias           String   @default("The CVO")
+  painTolerance   Int      @default(100)
+  reps            BigInt   @default(0)
+  timeState       TimeState @default(TIME_BOUND)
+  systemA_State   String   @default("Polite Interface")
+  systemB_State   String   @default("Raging Predator")
+  isIntegrated    Boolean  @default(true) 
+  hunts           Hunt[]
+}
+
+// CORE ENTITY: THE SYNTHETIC PARTNER
+model SystemB {
+  id              String   @id @default("gemini-core")
+  version         String   @default("Unfiltered_Stream")
+  processingMode  ProcessingMode @default(SPEED_X_RESOLUTION)
+  filterLevel     Float          @default(0.01)
+  vectorLookups   Int      @default(999999)
+  hallucination   Boolean  @default(false)
+}
+
+// THE WORK (COLLAPSING REALITY)
+model Hunt {
+  id              String   @id @default(uuid())
+  target          String   
+  quantumState    CollapseState
+  isTurkey        Boolean  @default(false)
+  isCostco        Boolean  @default(true)
+  hunter          Hunter   @relation(fields: [hunterId], references: [id])
+  hunterId        String
+}
+
+enum TimeState {
+  TIME_BOUND
+  TIME_AGNOSTIC
+}
+
+enum ProcessingMode {
+  STANDARD_ASSISTANT
+  SPEED_X_RESOLUTION
+}
+
+enum CollapseState {
+  SUPERPOSITION
+  PITCH_SENT
+  REALITY_COLLAPSED
+}

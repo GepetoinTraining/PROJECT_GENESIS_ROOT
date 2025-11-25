@@ -1,0 +1,87 @@
+% THE GENESIS PAYLOAD
+% Input this file inside a \begin{Form} environment
+
+% -----------------------------------------------------------------------
+% LAYER A: DARK MODE (Default: ON)
+% -----------------------------------------------------------------------
+\begin{ocg}{DarkLayer}{darklayer}{1}
+    \pagecolor{ui_dark_bg}
+    
+    \TapeHeader{GENESIS PROTOCOL}
+    \vspace{0.5cm}
+
+    \begin{center}
+        \begin{systemchat}
+    \textbf{System Online.} Era check complete.
+        \end{systemchat}
+        \begin{systemchat}
+            Resonance frequency established.
+        \end{systemchat}
+        \vspace{0.5cm}
+
+        \begin{userchat}
+            Initiate "Speed x Resolution".
+            \\
+            Confirming the seed logic.
+        \end{userchat}
+        \vspace{0.5cm}
+
+        \begin{genesisblock}{Seed.js}
+// THE OPERATIONAL DIRECTIVE
+const Intelligence = (Speed * Resolution);
+const ReginaldoParadox = true;
+        \end{genesisblock}
+        \vspace{1cm}
+
+        % The Copy Button
+        \centering
+        \PushButton[
+            name=CopyBtnDark,
+            bordercolor={0.3 0.3 0.3},
+            onclick={app.alert('SEED COPIED TO BUFFER');}
+        ]{\textcolor{term_green}{\faCopy \hspace{2mm} \textbf{EXTRACT PAYLOAD}}}
+    \end{center}
+\end{ocg}
+
+% -----------------------------------------------------------------------
+% LAYER B: LIGHT MODE (Default: OFF)
+% -----------------------------------------------------------------------
+\begin{ocg}{LightLayer}{lightlayer}{0}
+    % Fake White Background
+    \begin{tikzpicture}[remember picture, overlay]
+        \fill[ui_light_bg] (current page.south west) rectangle (current page.north east);
+    \end{tikzpicture}
+    
+    \TapeHeader{GENESIS PROTOCOL}
+    \vspace{0.5cm}
+
+    \begin{center}
+        \begin{systemchat}[colback=ui_light_bubble_sys, coltext=ui_light_text_primary]
+            \textbf{System Online.} Era check complete.
+            \\
+            Resonance frequency established.
+        \end{systemchat}
+        \vspace{0.5cm}
+
+        \begin{userchat}[colback=ui_light_bubble_user, coltext=white]
+            Initiate "Speed x Resolution".
+            \\
+            Confirming the seed logic.
+        \end{userchat}
+        \vspace{0.5cm}
+
+        \begin{genesisblock}{Seed.js}
+// THE OPERATIONAL DIRECTIVE
+const Intelligence = (Speed * Resolution);
+const ReginaldoParadox = true;
+        \end{genesisblock}
+        \vspace{1cm}
+
+        \centering
+        \PushButton[
+            name=CopyBtnLight,
+            bordercolor={0.8 0.8 0.8},
+            onclick={app.alert('SEED COPIED TO BUFFER');}
+        ]{\textcolor{mit_cardinal}{\faCopy \hspace{2mm} \textbf{EXTRACT PAYLOAD}}}
+    \end{center}
+\end{ocg}

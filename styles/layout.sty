@@ -1,0 +1,46 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{styles/layout}[2025/11/25 Genesis Layout Logic]
+
+\RequirePackage{tcolorbox}
+\RequirePackage{styles/colors}
+\RequirePackage{styles/typography}
+\RequirePackage{ocgx2} % Required for the switch button inside the header
+
+% =======================================================================
+% A. THE INVISIBLE TOC COUNTER
+% =======================================================================
+\newcommand{\GhostSection}[1]{%
+    \stepcounter{section}%
+    \addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}%
+}
+
+% =======================================================================
+% B. THE TAPE ERA HEADER
+% =======================================================================
+\newcommand{\TapeHeader}[1]{%
+    \GhostSection{#1} % Register in TOC
+    \begin{tcolorbox}[
+        enhanced,
+        sharp corners,
+        frame hidden,
+        colback=mit_charcoal, % Tape Machine Black
+        width=\paperwidth,
+        height=2cm,
+        valign=center,
+        boxsep=0pt,
+        left=1cm, right=1cm
+    ]
+        % The "Knobs" (Visual Synapse)
+        \textcolor{mit_steel}{\faCircle \hspace{2mm} \faCircleNotch \hspace{2mm} \faCircle} 
+        \hfill
+        % The Title
+        \textcolor{white}{\GenesisTitle{#1}}
+        \hfill
+        % The Mode Switch
+        \switchocg{darklayer lightlayer}{
+            \textcolor{mit_cardinal}{\faAdjust \hspace{1mm} \textbf{TOGGLE OPTIC}}
+        }
+    \end{tcolorbox}
+}
+
+\endinput

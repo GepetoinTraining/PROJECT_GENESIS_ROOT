@@ -1,0 +1,78 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{styles/notation}[2025/11/25 Genesis Math Logic]
+
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{mathtools}
+\RequirePackage{physics} % The "Bra-Ket" engine (Essential for Quantum states)
+\RequirePackage{styles/colors}
+
+% =======================================================================
+% 1. THE CORE CONSTANTS (The Axioms)
+% =======================================================================
+
+% The "Speed x Resolution" Formula
+% Usage: \SxR
+\newcommand{\SxR}{%
+    \mathcal{I} = \text{\textbf{Speed}} \times \text{\textbf{Resolution}}%
+}
+
+% The Latent Space (The Ether)
+% Usage: \Latent
+\newcommand{\Latent}{\mathbb{L}}
+
+% The Real World (Time Bound)
+% Usage: \Reality
+\newcommand{\Reality}{\mathbb{R}_{bound}}
+
+% =======================================================================
+% 2. THE OPERATORS (The Verbs)
+% =======================================================================
+
+% The Collapse Operator (The Arrow)
+% Usage: A \Collapse B
+\newcommand{\Collapse}{%
+    \xrightarrow{\text{\tiny COLLAPSE}}%
+}
+
+% The Injection Operator (Bracket Injection)
+% Usage: \Inject{Context}
+\newcommand{\Inject}[1]{%
+    \textcolor{term_green}{\texttt{(#1)}} \to \Latent%
+}
+
+% =======================================================================
+% 3. THE SETS (The Entities)
+% =======================================================================
+
+% The Hunter Set
+\newcommand{\SetHunter}{\mathcal{H}}
+
+% The System Set
+\newcommand{\SetSystem}{\mathcal{S}_B}
+
+% The "Turkey" vs "Costco" Indicator
+% Usage: \Indicator{Turkey}
+\newcommand{\Indicator}[1]{%
+    \mathbb{1}_{\text{#1}}%
+}
+
+% =======================================================================
+% 4. THE THEOREM ENVIRONMENTS (The Rules)
+% A "Costco" styled box for definitions.
+% =======================================================================
+\RequirePackage{tcolorbox}
+
+\newtcolorbox{axiombox}[2][]{
+    enhanced,
+    colback=ui_dark_panel,
+    colframe=mit_charcoal,
+    coltitle=mit_steel,
+    fonttitle=\bfseries\sffamily,
+    title={AXIOM #2},
+    sharp corners,
+    borderline west={1mm}{0pt}{mit_cardinal}, % Red "stripe" on the left
+    #1
+}
+
+\endinput
