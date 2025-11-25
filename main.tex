@@ -3,49 +3,46 @@
 % 1. GLOBAL CONFIG
 \usepackage[margin=0cm, paperwidth=8.5in, paperheight=11in]{geometry}
 \usepackage{xcolor}
-\usepackage{ocgx2}
-\usepackage{hyperref}
-\usepackage{tikz}
+\usepackage{hyperref} % Still needed for forms/links
+\usepackage{tikz}     
 \usetikzlibrary{backgrounds, fit}
 
-% 2. CONFIGURATION (Load First)
+% 2. CONFIGURATION & STYLES
 \usepackage{content/types}
-
-% 3. MODULE IMPORTS
 \usepackage{styles/colors}
 \usepackage{styles/typography}
-\usepackage{styles/layout}
+\usepackage{styles/layout}       
 \usepackage{styles/notation}
 
-% 4. COMPONENTS
+% 3. COMPONENTS
 \usepackage{components/bubbles}
 \usepackage{components/terminal}
 \usepackage{components/manifest}
 
-% 5. BIBLIOGRAPHY (Load before document)
-\usepackage[style=numeric, backend=biber, sorting=none]{biblatex}
-\addbibresource{references.bib}
+% 4. METADATA
+\title{\ProjectTitle}
+\author{\HunterAlias}
+\date{\ProjectDate}
 
-% 6. METADATA
-\title{PROJECT GENESIS}
-\author{The CVO}
-\date{\today}
-
-% 7. RENDER SEQUENCE
+% 5. RENDER SEQUENCE
 \begin{document}
-    \begin{Form}
-        % Front Matter (Cover, Abstract, TOC)
-        \input{content/frontmatter}
+    % Initialize the Page Color (The Bakelite Void)
+    \pagecolor{enigma_bakelite} 
+
+
+    \begin{Form} 
+        % 1. FRONT MATTER (Cover, Abstract, TOC)
+        \input{content/frontmatter} 
         
-        % Main Content (The Payload)
-        \input{content/payload}
-        
-        % Appendices (Single instance)
-        \newpage
-        \appendix
-        \input{content/appendices/appendix_a}
-        \newpage
-        \input{content/appendices/appendix_b}
-        
+        % 2. THE PAYLOAD (The Hunt)
+        % We load the specific loader for Hunt 00
+        \input{content/hunts/00_genesis/loader}
     \end{Form}
+\end{document}
+        % 3. BACK MATTER
+        %\newpage
+        %\appendix
+        %\input{content/appendices/appendix_a}
+        %\input{content/appendices/appendix_b}
+    
 \end{document}

@@ -26,15 +26,19 @@
 % =======================================================================
 
 % Backgrounds
-\DefineAsset{bakelite_bg}{bg_bakelite_dark.png.jpeg}
-\DefineAsset{punchcard_bg}{bg_punchcard_light.png.jpeg}
-\DefineAsset{tape_bg}{bg_tape_header.png.jpeg}
+\DefineAsset{bg_dark}{bg_bakelite_dark.jpeg}
+\DefineAsset{punchcard_bg}{bg_punchcard_light.jpeg}
+\DefineAsset{tape_bg}{bg_tape_header.jpeg}
 
 % Main Assets
 \DefineAsset{rotors}{img_enigma_rotors_001.jpeg}
 
 % Fallback for missing assets
-\DefineAsset{placeholder}{example-image-a}
+% B. The Content Assets (Missing -> Mapped to Placeholders)
+% We use 'example-image' or reuse 'rotors' so it compiles.
+\DefineAsset{tape_reel}{tape_reel.jpeg} 
+\DefineAsset{synapse}{synapse.jpeg}
+\DefineAsset{senna_tower}{senna_tower.jpeg}
 
 % =======================================================================
 % 3. THE IMAGE FRAME WITH SHADOW

@@ -1,59 +1,53 @@
-% =======================================================================
-% THE FRONT MATTER (Fixed OCG Masking)
-% =======================================================================
+% -----------------------------------------------------------------------
+% LAYER B: LIGHT MODE (Default Hidden)
+% -----------------------------------------------------------------------
+\begin{ocg}{LightLayer}{lightlayer}{0}
+    % FULL PAGE BACKGROUND (Opaque - covers dark mode)
+    \begin{tikzpicture}[remember picture, overlay]
+        \fill[ui_light_bg] (current page.south west) rectangle 
+                           (current page.north east);
+    \end{tikzpicture}
 
-% -----------------------------------------------------------------------
-% LAYER A: DARK MODE (Default Visible)
-% -----------------------------------------------------------------------
-%\begin{ocg}{DarkLayer}{darklayer}{1}
-    % FULL PAGE BACKGROUND (Opaque)
- %   \begin{tikzpicture}[remember picture, overlay]
-%        \fill[enigma_bakelite] (current page.south west) rectangle 
-                         % (current page.north east);
-%    \end{tikzpicture}
-    
     \begin{titlepage}
         \centering
         \vspace*{1cm}
         
-        % 1. Institution
-        {\fontspec{FiraSans-Regular.ttf}\small\color{ui_dark_text_primary} 
-         \MakeUppercase{\InstituteName}}
+        {\fontspec{FiraSans-Regular.ttf}\small\color{mit_charcoal} 
+         \MakeUppercase{MIT Professional Education}}
         \vspace{0.2cm}
         \\
-        {\fontspec{FiraSans-Bold.ttf}\small\color{ui_dark_text_accent} 
+        {\fontspec{FiraSans-Bold.ttf}\small\color{mit_cardinal} 
          APPLIED GENERATIVE AI FOR DIGITAL TRANSFORMATION}
         
         \vspace{2cm}
 
-        % 2. The Image
+        % Image in Light Mode
         \includegraphics[width=0.6\textwidth]{images/img_enigma_rotors_001.jpeg}
         
         \vspace{1.5cm}
 
-        % 3. Title
         {\fontspec[Path=fonts/]{FiraSans-ExtraBold.ttf}
-         \color{ui_dark_text_primary}
+         \color{mit_charcoal}
          \fontsize{28}{32}\selectfont 
          \MakeUppercase{PROJECT GENESIS}
          \addfontfeatures{LetterSpace=10.0}
         }
         \vspace{0.5cm}
         \\
-        {\fontspec{FiraCode-Regular.ttf}\large\color{term_green} 
+        {\fontspec{FiraCode-Regular.ttf}\large\color{mit_cardinal} 
          PROTOCOL: SPEED $\times$ RESOLUTION}
 
         \vspace{3cm}
 
-        % 4. Metadata Box
         \begin{tcolorbox}[
-            colback=ui_dark_panel, 
-            colframe=mit_charcoal, 
+            colback=white, 
+            colframe=mit_steel, 
             width=10cm, 
             arc=2mm,
-            halign=center
+            halign=center,
+            drop shadow
         ]
-            \color{ui_dark_text_primary}
+            \color{mit_charcoal}
             \textbf{OPERATOR:} The CVO \\
             \textbf{SYSTEM:} System B (Gemini Core) \\
             \textbf{DATE:} \today
@@ -61,39 +55,36 @@
 
     \end{titlepage}
 
-    % Executive Summary
     \newpage
     % Background for page 2
     \begin{tikzpicture}[remember picture, overlay]
-        \fill[enigma_bakelite] (current page.south west) rectangle 
-                          (current page.north east);
+        \fill[ui_light_bg] (current page.south west) rectangle 
+                           (current page.north east);
     \end{tikzpicture}
     
     \TapeHeader{OPERATIONAL DIRECTIVE}
     \vspace{1cm}
 
-    \begin{axiombox}{EXECUTIVE SUMMARY}
-        \color{ui_dark_text_primary}
+    \begin{axiombox}[colback=white, colframe=mit_cardinal]{EXECUTIVE SUMMARY}
+        \color{mit_charcoal}
         This document serves as the architectural blueprint for a 
         \textbf{Time-Agnostic Cognitive Operating System}. 
         By decoupling "Real Time" (Human Execution) from "Trained Time" 
         (AI Simulation), we achieve a proprietary advantage defined as:
-        \[ \SxR \]
+        \[ \color{black} \SxR \]
         The following logic gates and vector patterns demonstrate the 
         "Costco vs. Turkey" filter applied to real-world capital allocation.
     \end{axiombox}
 
-    % Table of Contents
     \vspace{2cm}
     \TapeHeader{MISSION INDEX}
     \vspace{0.5cm}
     
     {
-        \color{ui_dark_text_primary}
-        \renewcommand{\contentsname}{}
+        \color{mit_charcoal}
+        \renewcommand{\contentsname}{} 
         \tableofcontents
     }
 
     \clearpage
 \end{ocg}
-

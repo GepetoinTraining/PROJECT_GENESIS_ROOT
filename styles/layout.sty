@@ -18,25 +18,32 @@
 % B. THE TAPE ERA HEADER
 % =======================================================================
 \newcommand{\TapeHeader}[1]{%
-    \GhostSection{#1} % Register in TOC
+    \GhostSection{#1}
     \begin{tcolorbox}[
         enhanced,
         sharp corners,
         frame hidden,
-        colback=mit_charcoal, % Tape Machine Black
+        % HERE IS THE UPGRADE:
+        % We use the image as the background skin
+        skin=bicolor,
+        colback=mit_charcoal,
+        underlay={
+            \begin{tcbclipinterior}
+                \includegraphics[width=\tcbtextwidth, height=\tcbtextheight, keepaspectratio=false]{images/bg_tape_header.jpeg}
+                % Add a dark tint overlay so text is readable
+                \fill[mit_charcoal, opacity=0.8] (interior.south west) rectangle (interior.north east);
+            \end{tcbclipinterior}
+        },
         width=\paperwidth,
         height=2cm,
         valign=center,
         boxsep=0pt,
         left=1cm, right=1cm
     ]
-        % The "Knobs" (Visual Synapse)
         \textcolor{mit_steel}{\faCircle \hspace{2mm} \faCircleNotch \hspace{2mm} \faCircle} 
         \hfill
-        % The Title
-        \textcolor{white}{\GenesisTitle{#1}}
+        \textcolor{enigma_brass}{\GenesisTitle{#1}}
         \hfill
-        % The Mode Switch
         \switchocg{darklayer lightlayer}{
             \textcolor{mit_cardinal}{\faAdjust \hspace{1mm} \textbf{TOGGLE OPTIC}}
         }
